@@ -1,5 +1,11 @@
 #include <iostream>
 
+#include "Application.h"
+
 int main(int, char**) {
-    std::cout << "Hello, world!\n";
+    Application* application = Application::getInstance();
+
+    application->run();
+
+    return 0;
 }
