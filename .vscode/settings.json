@@ -1,6 +1,9 @@
 {
     "cmake.configureOnOpen": true,
     "files.associations": {
-        "memory": "cpp"
+        "memory": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xutility": "cpp"
     }
 }

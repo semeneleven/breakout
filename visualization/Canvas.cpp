@@ -28,7 +28,7 @@ void Canvas::clear()
     picture_.clear();
 
     for (int i = 0; i < height_; i++)
-        picture_.push_back(std::string(" ", width_));
+        picture_.push_back(std::string(width_, ' '));
 }
 
 
@@ -62,30 +62,26 @@ void Canvas::drawPoint(Point point, char symbol)
 }
 
 
-void Canvas::drawLine(Point start, Point end, char symbol)
-{
+void Canvas::drawLine(Line line, char symbol)
+{   
+    Point start = line.getPoint1();
+    Point end = line.getPoint2();
+
     int startHeight, startWidth, endHeight, endWidth;
     bool startInside = getPixelPositionByPoint(start, startHeight, startWidth);
     bool endInside = getPixelPositionByPoint(end, endHeight, endWidth);
 
     if (startInside && endInside)
     {
-        int widthRange = endWidth - startWidth;
-        int heightRange = endHeight - startHeight;
+        int widthRange = (int)fabs(endWidth - startWidth) + 1;
+        int heightRange = (int)fabs(endHeight - startHeight) + 1;
 
-        int length = (int)MAX(fabs(widthRange), fabs(heightRange));
-        double dWidth = widthRange / length;
-        double dHeight = heightRange / length;
+        int pixelQuantity = MAX(widthRange, heightRange);
 
-        double currentHeight = startHeight;
-        double currentWidth = startWidth;
-        for (int i = 0; i < length; i++)
+        std::vector<Point> linePoints = line.getApproximationPoints(pixelQuantity);
+        for (Point point : linePoints)
         {
-            currentHeight += dHeight;
-            currentWidth += dWidth;
-            int heightIndex = static_cast<int>(round(currentHeight));
-            int widthIndex = static_cast<int>(round(currentWidth));
-            picture_[heightIndex][widthIndex] = symbol;
+            drawPoint(point, symbol);
         }
     }
 }

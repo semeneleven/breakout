@@ -11,6 +11,9 @@ public:
     virtual void show() override;
 
     void redraw();
+
+private:
+    Canvas* canvas_;
 };
 
 #endif/*BREAKOUT_GAMEVIEW_H*/

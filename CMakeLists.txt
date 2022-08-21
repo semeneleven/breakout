@@ -12,5 +12,6 @@ add_executable(breakout ${SOURCES})
 
 add_subdirectory(geometry)
 add_subdirectory(visualization)
+add_subdirectory(core)
 
-target_link_libraries(breakout geometry visualization)
+target_link_libraries(breakout geometry visualization breakout_core)

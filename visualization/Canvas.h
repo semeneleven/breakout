@@ -4,7 +4,8 @@
 #include <vector>
 #include <string>
 
-#include "../geometry/Geometry.h"
+#include "../geometry/Box.h"
+#include "../geometry/Line.h"
 
 class Canvas
 {
@@ -16,7 +17,7 @@ public:
     void clear();
 
     void drawPoint(Point point, char symbol);
-    void drawLine(Point start, Point end, char symbol);
+    void drawLine(Line line, char symbol);
 
     bool getPixelPositionByPoint(Point point, int& heightIndex, int& widthIndex);
 

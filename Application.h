@@ -23,6 +23,8 @@ protected:
     };
     ~Application() {};
 
+    void setWindowSize(int height, int width);
+
     bool running_;
     std::unique_ptr<View> activeView_;
 
